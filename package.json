@@ -1,0 +1,42 @@
+{
+  "name": "antd-extended-components",
+  "version": "1.0.0",
+  "homepage": "https://Erin-mm.github.io/antd-extended-components/", 
+  "description": "An extension component library based on Ant Design React.",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --mode lib",
+    "prepublishOnly": "pnpm run build",
+    "build:demo": "vite build --mode production", 
+    "deploy:gh-pages": "pnpm run build:demo"          
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.15.0",
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0",
+    "antd": ">=4.0.0"
+  },
+  "dependencies": {
+    "@ant-design/icons": "^4.8.1",
+    "@types/react": "^19.2.6",
+    "@types/react-dom": "^19.2.3",
+    "antd": "^4.0.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.1",
+    "vite": "^7.2.4",
+    "vite-plugin-dts": "^4.5.4"
+  }
+}
