@@ -1,11 +1,18 @@
 // antd-extended-components/src/demo/main.tsx
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import { ConfigProvider } from "antd";
 import Demo from "./Demo";
 import "antd/dist/antd.css"; // 导入 antd 样式
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+ReactDOM.render(
   <React.StrictMode>
-    <Demo />
-  </React.StrictMode>
+    <ConfigProvider>
+      <BrowserRouter>
+        <Demo />
+      </BrowserRouter>
+    </ConfigProvider>
+  </React.StrictMode>,
+  document.getElementById("root")
 );

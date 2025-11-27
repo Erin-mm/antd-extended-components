@@ -3,6 +3,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 import dts from "vite-plugin-dts";
+import { libInjectCss } from "vite-plugin-lib-inject-css"; // 👈 1. 导入插件
 
 export default defineConfig(({ mode }) => {
   // 定义一个常量，判断当前是否在构建库 (即 pnpm run build)
@@ -12,16 +13,28 @@ export default defineConfig(({ mode }) => {
     base: "./",
     plugins: [
       react(),
+      isLibraryBuild && libInjectCss(),
       // 只有在构建库时才生成 d.ts 文件
       isLibraryBuild &&
         dts({
           insertTypesEntry: true,
+          rollupTypes: true,
+          exclude: ["demo/**/*.ts", "demo/**/*.tsx"],
         }),
     ],
     build: {
       // 开启库模式
       outDir: isLibraryBuild ? "dist" : "docs",
       emptyOutDir: true, // 每次构建前清空输出目录
+      // 库模式特有配置
+      lib: isLibraryBuild
+        ? {
+            entry: resolve(__dirname, "src/index.ts"),
+            name: "AntdExtendedComponents",
+            formats: ["es", "umd"],
+            fileName: (format) => `index.${format}.js`,
+          }
+        : undefined, // 演示模式下禁用 lib 配置
       rollupOptions: {
         // 确保外部化那些不想打包进库的依赖
         // 外部化依赖：在库模式下，将 react/antd 排除在外
@@ -49,15 +62,6 @@ export default defineConfig(({ mode }) => {
               chunkFileNames: `assets/[name].[hash].js`,
               assetFileNames: `assets/[name].[hash].[ext]`,
             },
-        // 库模式特有配置
-        lib: isLibraryBuild
-          ? {
-              entry: resolve(__dirname, "src/index.ts"),
-              name: "AntdExtendedComponents",
-              formats: ["es", "umd"],
-              fileName: (format) => `index.${format}.js`,
-            }
-          : undefined, // 演示模式下禁用 lib 配置
       },
       // 解决 Ant Design 样式路径问题 (如果需要)
       css: {

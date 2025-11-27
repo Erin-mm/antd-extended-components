@@ -124,7 +124,7 @@ const InfiniteSelect: React.FC<InfiniteSelectProps> = ({
 };
 
 // 确保使用具名导出
-export { InfiniteSelect }; 
+export default InfiniteSelect; 
 
 // 别忘了在 src/index.ts 中也使用具名导出
 // export { InfiniteSelect } from './components/InfiniteSelect';

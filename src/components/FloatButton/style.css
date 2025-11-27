@@ -1,0 +1,57 @@
+.ant-extended-float-btn {
+  position: fixed;
+  z-index: 1000;
+  bottom: 50px;
+  right: 50px;
+  .ant-btn {
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+      0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  }
+}
+
+.ant-extended-float-btn-group {
+  position: fixed;
+  z-index: 1000;
+  bottom: 50px;
+  right: 50px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.ant-extended-float-btn-group-circle {
+  position: fixed;
+  z-index: 1000;
+  bottom: 50px;
+  right: 50px;
+  display: flex;
+  gap: 4px;
+  flex-direction: column;
+}
+
+.ant-extended-float-btn-group-circle .ant-extended-float-btn {
+  position: relative;
+  bottom: auto;
+  right: auto;
+  margin: 4px;
+}
+
+.ant-extended-float-btn-group .ant-extended-float-btn {
+  position: relative;
+  bottom: auto;
+  right: auto;
+  margin: 4px;
+  .ant-btn {
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    &:hover {
+      transition: all 1s ease;
+      background-color: #f5f5f5;
+    }
+  }
+}
